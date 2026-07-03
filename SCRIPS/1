@@ -4,6 +4,7 @@
 
 library(dplyr)
 library(ggplot2)
+library(MASS)
 
 # 2. Implementación del dataset
 datos_ohio <- data.frame( 
@@ -54,4 +55,8 @@ modelo_poisson <- glm(casos_observados ~ anio + offset(log(poblacion_riesgo)),
                       data = datos_ohio)
 
 # Mostrar el resumen del modelo para analizar los estimadores y significancia
-summary(modelo_poisson)
+summary(modelo_poisson) 
+
+mod_nb <- glm.nb(casos_observados ~ anio + offset(log(poblacion_riesgo)), data = datos_ohio)
+
+summary(mod_nb)
